@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package giris_api;
+
+option java_package = "deliryo.io.ru.giris.api";
+option java_multiple_files = true;
+option java_outer_classname = "GirisApi";
+
+service Giris {
+  rpc CheckPhone (CheckPhoneRequest) returns (StatusResponse);
+}
+
+message CheckPhoneRequest {
+  string phone_number = 1;
+}
+
+message StatusResponse {
+  CheckStatus check_status = 1;
+}
+
+enum CheckStatus {
+  PROHIBITED = 0;
+  OK = 1;
+  ERROR = 2;
+  TEMPORARY_BLOCKED = 3;
+}
